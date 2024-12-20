@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Kids Game Zone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: white;
+            font-size: 2.5em;
+            margin: 0;
+            padding: 20px;
+        }
+        .subtitle {
+            color: white;
+            font-size: 1.2em;
+        }
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .game-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+        .category {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .adventure { background: #fde68a; color: #92400e; }
+        .action { background: #bfdbfe; color: #1e40af; }
+        .strategy { background: #bbf7d0; color: #166534; }
+        .classic { background: #fecaca; color: #991b1b; }
+        .shooter { background: #ddd6fe; color: #5b21b6; }
+        
+        .game-title {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #1a202c;
+        }
+        .game-description {
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+        .play-button {
+            background: #4c1d95;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+        .play-button:hover {
+            background: #5b21b6;
+        }
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 AI Kids Game Zone 🎮</h1>
+            <p class="subtitle">Choose Your Adventure!</p>
+        </div>
+
+        <div id="gameGrid" class="game-grid"></div>
+
+        <footer>
+            <p>🌟 Have fun playing these amazing AI-powered games! 🌟</p>
+        </footer>
+    </div>
+
+    <script>
+        const games = [
+            {
+                id: 'ee529d73-43af-41b1-9e12-5c9347b578d4',
+                title: 'Baldi Hunt',
+                description: 'Chase and escape in this exciting adventure!',
+                category: 'Adventure',
+                categoryClass: 'adventure',
+                icon: '🏃‍♂️'
+            },
+            {
+                id: 'f030f531-35b8-4658-a2b5-a9fff5d876e2',
+                title: 'Doom Baldi 3D',
+                description: 'Experience the thrill in 3D adventure!',
+                category: '3D Action',
+                categoryClass: 'action',
+                icon: '🎮'
+            },
+            {
+                id: '58e39a5b-36c7-4b48-90c2-5769a650282f',
+                title: 'Squares Tower Defense',
+                description: 'Defend your base with strategic thinking!',
+                category: 'Strategy',
+                categoryClass: 'strategy',
+                icon: '🏰'
+            },
+            {
+                id: 'bb71cc8d-2e9a-448a-a0bc-71f2c626a2d4',
+                title: 'RPS Tic Tac Toe',
+                description: 'Classic games with an exciting twist!',
+                category: 'Classic',
+                categoryClass: 'classic',
+                icon: '✌️'
+            },
+            {
+                id: 'b05de765-fce8-4b96-a228-b2e5a44494ac',
+                title: 'Jump Shooting',
+                description: 'Jump and shoot in this action-packed game!',
+                category: 'Action',
+                categoryClass: 'shooter',
+                icon: '🎯'
+            }
+        ];
+
+        function createGameCard(game) {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.innerHTML = `
+                <span class="category ${game.categoryClass}">${game.category}</span>
+                <h2 class="game-title">${game.icon} ${game.title}</h2>
+                <p class="game-description">${game.description}</p>
+                <button class="play-button" onclick="openGame('${game.id}')">Play Now! 🎮</button>
+            `;
+            return card;
+        }
+
+        function openGame(gameId) {
+            window.open(`/artifacts/${gameId}`, '_blank');
+        }
+
+        // Initialize game grid
+        const gameGrid = document.getElementById('gameGrid');
+        games.forEach(game => {
+            gameGrid.appendChild(createGameCard(game));
+        });
+    </script>
+</body>
+</html>
