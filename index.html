@@ -313,10 +313,16 @@
         }
 
         function openGame(url) {
-            createConfetti();
-            setTimeout(() => {
+            // Check if particles container exists and is empty
+            const particlesContainer = document.getElementById("confetti");
+            if (particlesContainer && !particlesContainer.firstChild) {
+                createConfetti();
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, 500);
+            } else {
                 window.open(url, '_blank');
-            }, 500);
+            }
         }
 
         // Initialize game grid
@@ -381,6 +387,11 @@
                     }
                 }
             });
+            
+            // Clear confetti after animation
+            setTimeout(() => {
+                tsParticles.domItem("confetti").destroy();
+            }, 2000);
         }
     </script>
 </body>
